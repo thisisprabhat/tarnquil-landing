@@ -1,0 +1,134 @@
+---
+import { SITE } from "../config/site";
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <div class="footer__logo-wrap">
+        <svg class="footer__logo" viewBox="0 0 48 48" width="24" height="24" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3" />
+          <circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6" />
+          <circle cx="24" cy="24" r="7" fill="currentColor" />
+        </svg>
+        <span class="footer__title">Tarnquil</span>
+      </div>
+      <p class="footer__desc">A quiet, text-only launcher for Android.</p>
+    </div>
+
+    <div class="footer__links">
+      <div class="footer__col">
+        <span class="footer__heading">Product</span>
+        <a href="/#features">Features</a>
+        <a href="/#themes">Themes</a>
+        <a href="/#faq">Questions</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__heading">WayGoSquad</span>
+        <a href={SITE.org.url} target="_blank" rel="noopener">waygosquad.com</a>
+        <a href={`mailto:${SITE.org.email}`}>contact@waygosquad.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>© {new Date().getFullYear()} {SITE.org.name}. Built with care for quiet minds.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--hairline);
+    background-color: var(--surface);
+    color: var(--muted);
+    padding: 4rem 1.25rem 2.5rem;
+    margin-top: auto;
+  }
+
+  .footer__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .footer__brand {
+    max-width: 280px;
+  }
+
+  .footer__logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+  }
+
+  .footer__desc {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer__heading {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .footer__col a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  .footer__col a:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  .footer__badge {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .footer__bottom {
+    max-width: var(--max-w);
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .footer {
+      padding: 3rem 1rem 2rem;
+    }
+    .footer__links {
+      gap: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,42 @@
+:root {
+  --font-serif: "Lora", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Dark theme (default) */
+  --bg: #0D0F11;
+  --surface: #15181B;
+  --text: #F0F2F5;
+  --muted: #8C929A;
+  --hairline: #26292D;
+
+  --max-w: 1120px;
+  --radius-phone: 2.25rem;
+}
+
+/* Light scheme overrides */
+[data-theme="light"] {
+  --bg: #F4F3EF;
+  --surface: #ECEAE4;
+  --text: #16181A;
+  --muted: #5E636A;
+  --hairline: #D9D6CE;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F4F3EF;
+    --surface: #ECEAE4;
+    --text: #16181A;
+    --muted: #5E636A;
+    --hairline: #D9D6CE;
+  }
+}
+
+/* Explicit data-theme dark overrides when toggled */
+[data-theme="dark"] {
+  --bg: #0D0F11;
+  --surface: #15181B;
+  --text: #F0F2F5;
+  --muted: #8C929A;
+  --hairline: #26292D;
+}

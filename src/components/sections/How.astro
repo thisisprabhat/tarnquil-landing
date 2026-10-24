@@ -1,0 +1,210 @@
+---
+import PhoneFrame from "../PhoneFrame.astro";
+import PauseDemo from "../PauseDemo.astro";
+import homeDark from "../../assets/screens/01-home.png";
+import homeLight from "../../assets/screens/light-home.png";
+import tourVideo from "../../assets/video/tarnquil-tour.mp4";
+---
+
+<section id="how" class="how">
+  <div class="how__inner" data-reveal>
+    <div class="how__text">
+      <div class="how__header">
+        <span class="how__tag">The Core Loop</span>
+        <h2>The launcher that pauses first.</h2>
+      </div>
+
+      <div class="how__steps">
+        <div class="how__step">
+          <span class="how__step-num">01</span>
+          <div class="how__step-content">
+            <h3>Pause</h3>
+            <p>A short, deliberate pause before a distracting app opens.</p>
+          </div>
+        </div>
+
+        <div class="how__step">
+          <span class="how__step-num">02</span>
+          <div class="how__step-content">
+            <h3>Choose a session</h3>
+            <p>Decide how long you'll stay: 1, 5, 10, 15 or 30 minutes.</p>
+          </div>
+        </div>
+
+        <div class="how__step">
+          <span class="how__step-num">03</span>
+          <div class="how__step-content">
+            <h3>See your day</h3>
+            <p>Screen time, unlocks and streaks, without judgement.</p>
+          </div>
+        </div>
+      </div>
+
+      <PauseDemo app="Instagram" />
+    </div>
+
+    <div class="how__visual">
+      <PhoneFrame class="how__phone">
+        <picture class="how__poster-picture">
+          <source media="(prefers-color-scheme: light)" srcset={homeLight.src} />
+          <img
+            src={homeDark.src}
+            alt="Tarnquil home screen preview"
+            width={homeDark.width}
+            height={homeDark.height}
+            loading="lazy"
+            class="how__poster-img"
+          />
+        </picture>
+        <video
+          data-inview
+          muted
+          loop
+          playsinline
+          preload="none"
+          width="720"
+          height="1600"
+          poster={homeDark.src}
+          aria-label="Tarnquil walkthrough: home, progress, today, drawer, search, pause and session picker"
+          class="how__video"
+        >
+          <source src={tourVideo} type="video/mp4" />
+        </video>
+      </PhoneFrame>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding: 4rem 1.25rem;
+    background-color: var(--surface);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .how__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .how__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3.5rem;
+    }
+  }
+
+  .how__text {
+    flex: 1.2;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .how__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .how__tag {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .how__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .how__step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .how__step-num {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .how__step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .how__step-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .how__step-content p {
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .how__visual {
+    flex: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .how__phone {
+    width: 100%;
+    max-width: 270px;
+    max-height: min(72vh, 600px);
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    .how__phone {
+      max-width: 240px;
+      max-height: 520px;
+    }
+  }
+
+  .how__poster-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+  }
+
+  .how__phone.is-playing .how__poster-picture {
+    opacity: 0;
+  }
+
+  .how__poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  .how__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+    position: relative;
+    z-index: 2;
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+import Arcs from "../Arcs.astro";
+import PlayBadge from "../PlayBadge.astro";
+import HairlineFigure from "../HairlineFigure.astro";
+---
+
+<section id="download" class="download">
+  <Arcs class="download__arcs" />
+
+  <div class="download__inner" data-reveal>
+    <div class="download__content">
+      <div class="download__turntable-wrap">
+        <HairlineFigure
+          figure="turntable"
+          label="Interactive isometric turntable settling on quarter turns"
+          intensity={0.7}
+          play={false}
+          class="download__turntable"
+        />
+      </div>
+
+      <h2>Ready for a calmer phone?</h2>
+      <p class="download__sub">Free. No ads. Android 9 and later.</p>
+
+      <div class="download__cta">
+        <PlayBadge size="lg" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .download {
+    position: relative;
+    padding: 7rem 1.25rem;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .download__arcs {
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+  }
+
+  .download__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .download__content {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .download__turntable-wrap {
+    width: 130px;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+    transition: transform 200ms ease;
+  }
+
+  .download__turntable-wrap:hover {
+    transform: scale(1.05);
+  }
+
+  .download__sub {
+    font-size: 1.25rem;
+    color: var(--muted);
+  }
+
+  .download__cta {
+    margin-top: 1rem;
+  }
+</style>

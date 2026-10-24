@@ -1,0 +1,5 @@
+# https://tarnquil.waygosquad.com/robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://tarnquil.waygosquad.com/sitemap.xml

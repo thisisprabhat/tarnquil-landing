@@ -1,0 +1,51 @@
+{
+  "name": "tarnquil_landing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "sync:assets": "node scripts/sync-assets.mjs",
+    "test": "playwright test",
+    "lint:html": "html-validate \"dist/**/*.html\"",
+    "lhci": "lhci autorun",
+    "check": "pnpm build && pnpm lint:html && ! grep -rn \"com\\.waygosquad\\.\" src public --exclude=site.ts --exclude=\"*.md\" && pnpm test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.15.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.15.0",
+  "type": "module",
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/lora": "^5.3.0",
+    "@lucasmarkes/hairline": "^0.5.1",
+    "astro": "^5.18.2",
+    "marked": "^18.1.1",
+    "sharp": "^0.35.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.64.1",
+    "@types/marked": "^6.0.0",
+    "@types/node": "^26.6.5",
+    "html-validate": "^9.7.1",
+    "typescript": "^7.0.2"
+  }
+}

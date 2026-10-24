@@ -1,0 +1,115 @@
+---
+import { Picture } from "astro:assets";
+import Arcs from "../Arcs.astro";
+import PlayBadge from "../PlayBadge.astro";
+import { SITE } from "../../config/site";
+import heroImg from "../../assets/images/hero-3-phones-2400x1350.png";
+---
+
+<section id="hero" class="hero">
+  <Arcs breathing class="hero__arcs" />
+
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <h1>{SITE.h1}</h1>
+      <p class="hero__sub">{SITE.heroSub}</p>
+
+      <div class="hero__cta">
+        <PlayBadge size="lg" />
+        <p class="hero__desktop-hint">On a computer? Open this page on your Android phone.</p>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <Picture
+        src={heroImg}
+        widths={[640, 960, 1280, 1920, 2400]}
+        formats={["avif", "webp"]}
+        sizes="(min-width: 1120px) 1120px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        alt="Tarnquil's app drawer, home screen and Progress page side by side"
+        class="hero__img"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 4rem 1.25rem 2rem;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero__arcs {
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 1000px;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero__copy {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero__sub {
+    font-size: clamp(1.125rem, 2vw + 0.5rem, 1.375rem);
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 640px;
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero__desktop-hint {
+    font-size: 0.875rem;
+    color: var(--muted);
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      padding: 6rem 1.25rem 3rem;
+    }
+    .hero__desktop-hint {
+      display: block;
+    }
+  }
+
+  .hero__visual {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .hero__img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+  }
+</style>

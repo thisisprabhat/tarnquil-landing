@@ -1,0 +1,97 @@
+---
+import Base from "../layouts/Base.astro";
+import { marked } from "marked";
+import fs from "node:fs";
+import path from "node:path";
+
+const privacyPath = path.resolve("./src/content/privacy-policy.md");
+const markdown = fs.readFileSync(privacyPath, "utf-8");
+
+// Convert markdown to HTML
+const contentHtml = marked.parse(markdown);
+---
+
+<Base
+  title="Privacy Policy — Tarnquil"
+  description="Privacy Policy for Tarnquil. Nothing leaves your phone: no accounts, no analytics, no ads, on-device only."
+  path="/privacy"
+>
+  <div class="privacy-page">
+    <div class="privacy-page__inner">
+      <article class="privacy-prose" set:html={contentHtml} />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .privacy-page {
+    padding: 4rem 1.25rem 6rem;
+    background-color: var(--bg);
+  }
+
+  .privacy-page__inner {
+    max-width: 68ch;
+    margin: 0 auto;
+  }
+
+  /* Readable markdown prose styles */
+  .privacy-prose {
+    color: var(--text);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  .privacy-prose :global(h1) {
+    font-size: clamp(2rem, 4vw + 1rem, 3rem);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .privacy-prose :global(h2) {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .privacy-prose :global(h3) {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .privacy-prose :global(p),
+  .privacy-prose :global(ul),
+  .privacy-prose :global(ol) {
+    margin-bottom: 1.25rem;
+  }
+
+  .privacy-prose :global(ul),
+  .privacy-prose :global(ol) {
+    padding-left: 1.5rem;
+  }
+
+  .privacy-prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .privacy-prose :global(code) {
+    background-color: var(--surface);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .privacy-prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--hairline);
+    margin: 3rem 0;
+  }
+
+  .privacy-prose :global(blockquote) {
+    border-left: 3px solid var(--muted);
+    padding-left: 1rem;
+    color: var(--muted);
+    margin: 1.5rem 0;
+  }
+</style>

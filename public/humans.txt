@@ -1,0 +1,8 @@
+/* TEAM */
+Creator: Prabhat Kumar
+Site: https://waygosquad.com
+
+/* SITE */
+Product: Tarnquil, a minimalist Android launcher
+Landing: https://tarnquil.waygosquad.com
+Standards: HTML5, CSS3

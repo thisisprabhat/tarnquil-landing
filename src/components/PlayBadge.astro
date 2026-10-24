@@ -1,0 +1,61 @@
+---
+import { PLAY_URL } from "../config/site";
+
+interface Props {
+  size?: "sm" | "lg";
+  class?: string;
+}
+
+const { size = "lg", class: className = "" } = Astro.props;
+---
+
+<a
+  href={PLAY_URL}
+  class={`play-badge play-badge--${size} ${className}`}
+  title="Get Tarnquil on Google Play"
+  rel="noopener"
+>
+  <img
+    src="/badges/google-play-en.png"
+    alt="Get it on Google Play"
+    width="646"
+    height="250"
+    loading="lazy"
+    decoding="async"
+  />
+</a>
+
+<style>
+  .play-badge {
+    display: inline-block;
+    line-height: 0;
+    transition: transform 150ms ease, opacity 150ms ease;
+    text-decoration: none;
+  }
+
+  .play-badge:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+  }
+
+  .play-badge img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .play-badge--sm {
+    height: 40px;
+  }
+
+  .play-badge--lg {
+    height: 52px;
+    min-height: 48px;
+  }
+
+  @media (max-width: 480px) {
+    .play-badge--lg {
+      height: 48px;
+    }
+  }
+</style>

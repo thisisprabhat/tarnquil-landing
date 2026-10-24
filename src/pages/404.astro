@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Page Not Found — Tarnquil" noindex={true}>
+  <div class="not-found">
+    <div class="not-found__inner">
+      <svg class="not-found__logo" viewBox="0 0 48 48" width="56" height="56" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3" />
+        <circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6" />
+        <circle cx="24" cy="24" r="7" fill="currentColor" />
+      </svg>
+
+      <h1>404</h1>
+      <p class="not-found__msg">This page took a break.</p>
+      <div class="not-found__link">
+        <a href="/">Return to Home →</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1.25rem;
+    text-align: center;
+  }
+
+  .not-found__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .not-found__logo {
+    color: var(--muted);
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .not-found__msg {
+    color: var(--muted);
+    font-size: 1.25rem;
+  }
+
+  .not-found__link {
+    margin-top: 1rem;
+  }
+
+  .not-found__link a {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+</style>

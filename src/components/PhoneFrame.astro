@@ -1,0 +1,119 @@
+---
+import type { ImageMetadata } from "astro";
+import { Picture } from "astro:assets";
+
+interface Props {
+  src?: ImageMetadata;
+  lightSrc?: ImageMetadata;
+  alt?: string;
+  loading?: "lazy" | "eager";
+  widths?: number[];
+  class?: string;
+}
+
+const {
+  src,
+  lightSrc,
+  alt = "",
+  loading = "lazy",
+  widths = [360, 540, 720],
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`phone-frame ${className}`}>
+  <div class="phone-frame__screen">
+    {
+      src ? (
+        <div class="phone-frame__picture-wrap">
+          {lightSrc ? (
+            <picture>
+              <source
+                media="(prefers-color-scheme: light)"
+                srcset={lightSrc.src}
+              />
+              <img
+                src={src.src}
+                alt={alt}
+                width={src.width}
+                height={src.height}
+                loading={loading}
+                decoding="async"
+                class="phone-frame__img"
+              />
+            </picture>
+          ) : (
+            <Picture
+              src={src}
+              alt={alt}
+              widths={widths}
+              formats={["avif", "webp"]}
+              loading={loading}
+              class="phone-frame__img"
+            />
+          )}
+        </div>
+      ) : (
+        <slot />
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .phone-frame {
+    display: inline-block;
+    position: relative;
+    border-radius: 2rem;
+    border: 3px solid var(--hairline);
+    background-color: #000000;
+    aspect-ratio: 9 / 20;
+    overflow: hidden;
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.45);
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Camera punch-hole sensor on flagship modern phones */
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #121315;
+    border: 1px solid #232528;
+    border-radius: 50%;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .phone-frame__screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    border-radius: 1.8rem;
+  }
+
+  .phone-frame__picture-wrap {
+    width: 100%;
+    height: 100%;
+  }
+
+  .phone-frame__img,
+  :global(.phone-frame video) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+    display: block;
+    background-color: #000000;
+  }
+</style>

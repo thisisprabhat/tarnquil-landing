@@ -44,40 +44,42 @@ import tourVideo from "../../assets/video/tarnquil-tour.mp4";
     </div>
 
     <div class="how__visual">
-      <PhoneFrame class="how__phone">
-        <picture class="how__poster-picture">
-          <source media="(prefers-color-scheme: light)" srcset={homeLight.src} />
-          <img
-            src={homeDark.src}
-            alt="Tarnquil home screen preview"
-            width={homeDark.width}
-            height={homeDark.height}
-            loading="lazy"
-            class="how__poster-img"
-          />
-        </picture>
-        <video
-          data-inview
-          muted
-          loop
-          playsinline
-          preload="none"
-          width="720"
-          height="1600"
-          poster={homeDark.src}
-          aria-label="Tarnquil walkthrough: home, progress, today, drawer, search, pause and session picker"
-          class="how__video"
-        >
-          <source src={tourVideo} type="video/mp4" />
-        </video>
-      </PhoneFrame>
+      <div class="how__phone-wrap">
+        <PhoneFrame class="how__phone">
+          <picture class="how__poster-picture">
+            <source media="(prefers-color-scheme: light)" srcset={homeLight.src} />
+            <img
+              src={homeDark.src}
+              alt="Tarnquil home screen preview"
+              width={homeDark.width}
+              height={homeDark.height}
+              loading="lazy"
+              class="how__poster-img"
+            />
+          </picture>
+          <video
+            data-inview
+            muted
+            loop
+            playsinline
+            preload="none"
+            width="720"
+            height="1600"
+            poster={homeDark.src}
+            aria-label="Tarnquil walkthrough: home, progress, today, drawer, search, pause and session picker"
+            class="how__video"
+          >
+            <source src={tourVideo} type="video/mp4" />
+          </video>
+        </PhoneFrame>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .how {
-    padding: 4rem 1.25rem;
+    padding: 3rem 1.25rem;
     background-color: var(--surface);
     border-top: 1px solid var(--hairline);
     border-bottom: 1px solid var(--hairline);
@@ -163,17 +165,27 @@ import tourVideo from "../../assets/video/tarnquil-tour.mp4";
     align-items: center;
   }
 
-  .how__phone {
+  .how__phone-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 270px;
-    max-height: min(72vh, 600px);
+  }
+
+  .how__visual :global(.phone-frame) {
+    height: clamp(300px, 46vh, 410px);
+    width: auto;
+    aspect-ratio: 9 / 20;
+    max-width: 100%;
     position: relative;
   }
 
   @media (max-width: 600px) {
-    .how__phone {
-      max-width: 240px;
-      max-height: 520px;
+    .how {
+      padding: 2.25rem 1rem;
+    }
+    .how__visual :global(.phone-frame) {
+      height: clamp(280px, 42vh, 340px);
     }
   }
 
@@ -188,7 +200,7 @@ import tourVideo from "../../assets/video/tarnquil-tour.mp4";
     transition: opacity 300ms ease;
   }
 
-  .how__phone.is-playing .how__poster-picture {
+  :global(.how__phone.is-playing) .how__poster-picture {
     opacity: 0;
   }
 

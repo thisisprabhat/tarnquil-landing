@@ -27,7 +27,6 @@
     "android-launcher"
   ],
   "author": "Prabhat Kumar (https://waygosquad.com)",
-  "license": "Apache-2.0",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",

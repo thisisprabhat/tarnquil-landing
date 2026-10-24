@@ -103,7 +103,20 @@ docs/                        design spec and implementation / launch plans
 
 ## Deployment
 
-`pnpm build` outputs a plain static folder (`dist/`) that any static host can serve: nginx, Coolify, Cloudflare Pages, Netlify, GitHub Pages. Recommended headers (HSTS, CSP, immutable caching for `/_astro/*`), the 301 from alias hosts, and the Search Console and Play Console steps are in [docs/plans/2026-10-24-launch-and-seo.md](docs/plans/2026-10-24-launch-and-seo.md).
+### Docker
+
+The included multi-stage [`Dockerfile`](Dockerfile) builds the site with Node 22 and serves it from nginx using [`nginx.conf`](nginx.conf). That config sets security headers, long caching for hashed assets, and a 404 page. It also has a `/health` endpoint, which the container healthcheck uses.
+
+```bash
+docker build -t tarnquil-landing .
+docker run --rm -p 8080:80 tarnquil-landing   # http://localhost:8080 · health: /health
+```
+
+This works as-is on Coolify or any other Docker host.
+
+### Any static host
+
+`pnpm build` outputs a plain static folder (`dist/`) that any static host can serve: nginx, Cloudflare Pages, Netlify, GitHub Pages. Recommended headers (HSTS, CSP, immutable caching for `/_astro/*`), the 301 from alias hosts, and the Search Console and Play Console steps are in [docs/plans/2026-10-24-launch-and-seo.md](docs/plans/2026-10-24-launch-and-seo.md).
 
 `/privacy` is the privacy-policy URL used in the Play Console listing, so keep it at that exact path.
 

@@ -4,7 +4,8 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const APP_ROOT = "/Users/prabhatkumar/Projects/creations/apps/DetoxDesk";
+// Path to a checkout of the app repo (github.com/thisisprabhat/DetoxDesk); override with TARNQUIL_APP_ROOT.
+const APP_ROOT = path.resolve(process.env.TARNQUIL_APP_ROOT ?? path.join(ROOT, "../../apps/DetoxDesk"));
 const ASSETS_ROOT = path.join(APP_ROOT, "assets");
 
 // Allowlist map: [source path relative to APP_ROOT or ASSETS_ROOT, dest path relative to ROOT]

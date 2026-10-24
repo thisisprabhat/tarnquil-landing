@@ -1,8 +1,13 @@
 {
-  "name": "tarnquil_landing",
+  "name": "tarnquil-landing",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Landing page for Tarnquil, a minimalist text-only Android launcher for digital detox.",
+  "homepage": "https://tarnquil.waygosquad.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisprabhat/tarnquil-landing.git"
+  },
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
@@ -13,9 +18,16 @@
     "lhci": "lhci autorun",
     "check": "pnpm build && pnpm lint:html && ! grep -rn \"com\\.waygosquad\\.\" src public --exclude=site.ts --exclude=\"*.md\" && pnpm test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "tarnquil",
+    "landing-page",
+    "astro",
+    "minimalist-launcher",
+    "digital-detox",
+    "android-launcher"
+  ],
+  "author": "Prabhat Kumar (https://waygosquad.com)",
+  "license": "Apache-2.0",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",

@@ -12,9 +12,9 @@
 Tarnquil is a minimalist, text-only Android launcher built to help you reduce screen time and cultivate digital mindfulness. We believe that digital wellbeing tools must respect your digital privacy above all else.
 
 **Our Core Privacy Promise:**
-- **Zero Data Collection**: We do not collect, harvest, store, or transmit any personal information, device identifiers, or user behavior.
+- **No Data Collection by the Developer**: We do not collect, harvest, or store any personal information, device identifiers, or user behavior on any server. The only data that leaves your device is a weather request (city or approximate coordinates) sent to Open-Meteo if you enable the Weather widget.
 - **No Analytics, No Ads, No Trackers**: Tarnquil contains zero analytics SDKs (no Google Analytics, Firebase, Sentry, Mixpanel, etc.), zero advertising networks, and zero third-party telemetry libraries.
-- **100% On-Device Processing**: All app blocking, session timing, notification filtering, screen time metrics, notes, to-dos, and configuration settings are processed and stored exclusively on your device.
+- **On-Device Processing**: All app blocking, session timing, notification filtering, screen time metrics, notes, to-dos, and configuration settings are processed and stored exclusively on your device.
 - **No Accounts Required**: Tarnquil does not require you to create an account, log in, or provide an email address or phone number.
 
 ---
@@ -31,10 +31,11 @@ Android permissions and special system capabilities requested by Tarnquil are us
   - Blocking short-form video feeds (YouTube Shorts, Instagram Reels, Facebook Reels, Snapchat Spotlight) by detecting active video containers and triggering a system back navigation.
 - **Data Handling**: The Accessibility Service only inspects the foreground package name and relevant UI component identifiers needed to detect short-video tabs. **It does NOT monitor, record, store, or transmit your keystrokes, passwords, private messages, personal data, or screen content.**
 - **User Control**: You must explicitly grant this service via system settings after reviewing our in-app prominent disclosure dialog. You can disable this service at any time in Android system settings.
+- **Disclosure video**: A short video of the in-app disclosure and consent flow is available at [tarnquil.waygosquad.tech/video/accessibility-disclosure.mp4](https://tarnquil.waygosquad.tech/video/accessibility-disclosure.mp4).
 
 ### B. Notification Listener Service (`BIND_NOTIFICATION_LISTENER_SERVICE`)
 - **Purpose**: Enables the Notification Filter feature to hold notifications from apps that are currently blocked, apps configured for filtered holding, or during active focus/sleep schedules.
-- **Data Handling**: When notifications are held, basic details (package name, notification title, message text, and post time) are saved locally in the on-device encrypted Room database so you can view them later during scheduled digests. **Held notifications never leave your device and are never sent to any external server.**
+- **Data Handling**: When notifications are held, basic details (package name, notification title, message text, and post time) are saved locally in the app's private on-device database (protected by Android's app sandbox) so you can view them later during scheduled digests. **Held notifications never leave your device and are never sent to any external server.**
 - **User Control**: Optional. Required only if you enable the Notification Filter feature.
 
 ### C. Usage Stats Access (`PACKAGE_USAGE_STATS`)
@@ -42,21 +43,17 @@ Android permissions and special system capabilities requested by Tarnquil are us
 - **Data Handling**: Aggregate statistics are read from Android's local `UsageStatsManager` and stored locally on your device. They are never shared, uploaded, or transmitted.
 - **User Control**: Optional. You can use the launcher without granting Usage Access if you do not wish to view screen time metrics.
 
-### D. Exact Alarms & Schedule Triggers (`SCHEDULE_EXACT_ALARM`)
-- **Purpose**: Used by the operating system to accurately activate and deactivate your scheduled focus blocks (Work, Study, Sleep, Pomodoro) and notification digest deliveries at the exact designated times.
-- **Data Handling**: No personal data is involved.
-
-### E. Calendar (`READ_CALENDAR`)
+### D. Calendar (`READ_CALENDAR`)
 - **Purpose**: Powers the text-only upcoming agenda widget on the home screen.
 - **Data Handling**: Read locally on your device to display event titles and times for today and tomorrow. Calendar data is never logged, stored in persistent files, or sent off-device.
 - **User Control**: Completely optional. Used only if you enable the Calendar home widget.
 
-### F. Location (`ACCESS_COARSE_LOCATION`)
+### E. Location (`ACCESS_COARSE_LOCATION`)
 - **Purpose**: Optional convenience to determine your current city for the home Weather widget.
-- **Data Handling**: Used solely to determine approximate latitude and longitude on your device. Your precise location is never tracked, stored, or shared.
+- **Data Handling**: Used once, when you tap "Use my location", to read your approximate latitude and longitude. Those coordinates are sent to the Open-Meteo weather service to fetch the forecast and are saved on your device as your weather city. Tarnquil has no server and does not collect or store your location anywhere else. Open-Meteo's own policy applies to requests it receives.
 - **User Control**: Completely optional. You can manually search and set your city name instead without granting location access.
 
-### G. Internet Access (`INTERNET`)
+### F. Internet Access (`INTERNET`)
 - **Purpose**: Used solely to fetch current weather conditions and forecasts from the free [Open-Meteo API](https://open-meteo.com) if the Weather widget is enabled.
 - **Data Handling**: The request transmits only approximate latitude and longitude coordinates. No user identifiers, device serials, IP addresses, or personal information are sent or linked. Forecast data is cached locally on-device for 30 minutes.
 

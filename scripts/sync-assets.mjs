@@ -46,6 +46,9 @@ const copies = [
   // Tour video to src/assets/video/ and public/video/
   [path.join(ASSETS_ROOT, "landing-page/video/tarnquil-tour.mp4"), path.join(ROOT, "src/assets/video/tarnquil-tour.mp4")],
 
+  // Accessibility prominent-disclosure video, served at /video/accessibility-disclosure.mp4 (linked from the Play Console declaration)
+  [path.join(ASSETS_ROOT, "landing-page/video/accessibility-disclosure.mp4"), path.join(ROOT, "public/video/accessibility-disclosure.mp4")],
+
   // Screenshots: phone captures for How poster, Features
   [path.join(ASSETS_ROOT, "playstore/screenshots/phone/01-home.png"), path.join(ROOT, "src/assets/screens/01-home.png")],
   [path.join(ASSETS_ROOT, "playstore/screenshots/phone/06-app-limits.png"), path.join(ROOT, "src/assets/screens/06-app-limits.png")],

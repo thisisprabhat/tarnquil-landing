@@ -18,6 +18,14 @@ const contentHtml = marked.parse(markdown);
 >
   <div class="privacy-page">
     <div class="privacy-page__inner">
+      <section class="disclosure-video" aria-labelledby="accessibility-disclosure-video">
+        <h2 id="accessibility-disclosure-video">Accessibility service: prominent disclosure video</h2>
+        <p>
+          This short video shows the disclosure Tarnquil displays before you enable its accessibility service, the
+          consent step, and how to switch the service off again.
+        </p>
+        <video controls preload="metadata" playsinline src="/video/accessibility-disclosure.mp4"></video>
+      </section>
       <article class="privacy-prose" set:html={contentHtml} />
     </div>
   </div>
@@ -32,6 +40,26 @@ const contentHtml = marked.parse(markdown);
   .privacy-page__inner {
     max-width: 68ch;
     margin: 0 auto;
+  }
+
+  .disclosure-video {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .disclosure-video h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .disclosure-video video {
+    display: block;
+    width: 100%;
+    max-width: 22rem;
+    margin: 1.25rem auto 0;
+    border-radius: 12px;
+    background-color: var(--surface);
   }
 
   /* Readable markdown prose styles */
